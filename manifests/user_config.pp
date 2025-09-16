@@ -53,7 +53,7 @@ define irssi::user_config (
         } else {
             $target = "/usr/share/irssi/scripts/${script}"
         }
-        $autorun = 'autorun' $config ? {
+        $autorun = 'autorun' in $config ? {
             true    => $config['autorun'],
             default => true,
         }
