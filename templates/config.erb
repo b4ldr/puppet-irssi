@@ -36,16 +36,16 @@ chatnets = {
     max_query_chans = "<%= config.fetch('querychans', 5) %>";
     max_msgs = "<%= config.fetch('kicks', 5) %>";
     max_whois = "<%= config.fetch('whois', 4) %>";
-    <%- if config.has_key?('username') -%>
+    <%- if 'username' in config -%>
     username = "<%= config['username'] %>";
     <%- end -%>
-    <%- if config.has_key?('sasl_mechanism') -%>
+    <%- if 'sasl_mechanism' in config -%>
     sasl_mechanism = "<%= config['sasl_mechanism'] %>";
     <%- end -%>
-    <%- if config.has_key?('sasl_username') -%>
+    <%- if 'sasl_username' in config -%>
     sasl_username = "<%= config['sasl_username'] %>";
     <%- end -%>
-    <%- if config.has_key?('sasl_password') -%>
+    <%- if 'sasl_password' in config -%>
     sasl_password = "<%= config['sasl_password'] %>";
     <%- end -%>
   };
@@ -97,19 +97,19 @@ settings = {
 ignores = (
 <%- @ignores.each do |ignore| -%>
   {
-  <%- if ignore.has_key?('level') -%>
+  <%- if' level' in ignore -%>
     level = "<%= ignore['level'].join(' ') %>";
   <%- end -%>
-  <%- if ignore.has_key?('mask') -%>
+  <%- if 'mask' in ignore -%>
     mask = "<%= ignore['mask'] %>";
   <%- end -%>
-  <%- if ignore.has_key?('pattern') -%>
+  <%- if 'pattern' in ignore -%>
     pattern = "<%= ignore['pattern'] %>";
   <%- end -%>
-  <%- if ignore.has_key?('exception') -%>
+  <%- if 'exception' in ignore -%>
     exception = "<%= bool2yesno(ignore['exception']) %>";
   <%- end -%>
-  <%- if ignore.has_key?('regexp') -%>
+  <%- if 'regexp' in ignore -%>
     regexp = "<%= bool2yesno(ignore['regexp']) %>";
   <%- end -%>
   },
@@ -119,10 +119,10 @@ hilights = (
 <%- @hilights.each_pair do |name, hilight| -%>
   {
     text = "<%= name %>";
-  <%- if hilight.has_key?('priority') -%>
+  <%- if 'priority' in hilight -%>
     priority = "<%= hilight['priority'] %>";
   <%- end -%>
-  <%- if hilight.has_key?('highlight') -%>
+  <%- if 'highlight' in hilight -%>
     <%#- irssi config is strange -%>
     <%- if hilight['highlight'] == 'line' -%>
     nick = "no";
@@ -135,20 +135,20 @@ hilights = (
     <%- end -%>
   <%- end -%>
   <%- ['mask', 'full', 'matchcase', 'regexp'].each do |match| -%>
-    <%- if hilight.has_key?(match) -%>
+    <%- if match in hilight -%>
     <%= match %> = "<%= bool2yesno(hilight[match]) %>";
     <%- end -%>
   <%- end -%>
-  <%- if hilight.has_key?('servertag') -%>
+  <%- if 'servertag' in hilight -%>
     servertag = "<%= hilight['servertag'] %>";
   <%- end -%>
-  <%- if hilight.has_key?('color') -%>
+  <%- if 'color' in hilight -%>
     color = "<%= hilight['color'] %>";
   <%- end -%>
-  <%- if hilight.has_key?('network') -%>
+  <%- if 'network' in hilight -%>
     network = "<%= hilight['network'] %>";
   <%- end -%>
-  <%- if hilight.has_key?('channels') -%>
+  <%- if 'channels' in hilight -%>
     channels = (
     <%- hilight['channels'].each do |channel| -%>
       "<%= channel %>",

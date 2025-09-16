@@ -42,7 +42,7 @@ define irssi::user_config (
         mode    => '0600',
     }
     $scripts.each |String $script, Irssi::Script $config| {
-        if $config.has_key('source') {
+        if 'source' in $config {
             file {"${home_path}/.irssi/scripts/${script}":
                 ensure => file,
                 source => $config['source'],
@@ -53,7 +53,7 @@ define irssi::user_config (
         } else {
             $target = "/usr/share/irssi/scripts/${script}"
         }
-        $autorun = $config.has_key('autorun') ? {
+        $autorun = 'autorun' $config ? {
             true    => $config['autorun'],
             default => true,
         }
