@@ -97,7 +97,7 @@ settings = {
 ignores = (
 <%- @ignores.each do |ignore| -%>
   {
-  <%- if' level' in ignore -%>
+  <%- if 'level' in ignore -%>
     level = "<%= ignore['level'].join(' ') %>";
   <%- end -%>
   <%- if 'mask' in ignore -%>
